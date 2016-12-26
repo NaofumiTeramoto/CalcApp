@@ -12,7 +12,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView mTextView;
-    EditText mEditText;
+    EditText mEditText1;
+    EditText mEditText2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +23,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(this);
 
+        Button button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(this);
+
+        Button button3 = (Button) findViewById(R.id.button3);
+        button3.setOnClickListener(this);
+
+        Button button4 = (Button) findViewById(R.id.button4);
+        button4.setOnClickListener(this);
+
+        mTextView = null;
         mTextView = (TextView) findViewById(R.id.textView);
-        mEditText = (EditText) findViewById(R.id.editText1);
+        mEditText1 = (EditText) findViewById(R.id.editText1);
+        mEditText2 = (EditText) findViewById(R.id.editText2);
+
     }
     @Override
     public void onClick(View v) {
- //       Log.d("UI_PARTS", "ボタンをタップしました");
-//        Intent intent = new Intent(this, SecondActivity.class);
-//        intent.putExtra("VALUE1", 10);
-//        intent.putExtra("VALUE2", 20);
-//        startActivity(intent);
+        if (v != null) {
+            Intent intent = new Intent(this, SecondActivity.class);
+            double Num1 = Double.parseDouble(mEditText1.getText().toString());
+            double Num2 = Double.parseDouble(mEditText2.getText().toString());
+            switch (v.getId()) {
+                case R.id.button1:
+                    intent.putExtra("VALUE1", Num1 + Num2);
+                    startActivity(intent);
+                    break;
 
-    }
+                case R.id.button2:
+                    intent.putExtra("VALUE1", Num1 - Num2);
+                    startActivity(intent);
+                    break;
+
+                case R.id.button3:
+                    intent.putExtra("VALUE1", Num1 * Num2);
+                    startActivity(intent);
+                    break;
+
+                case R.id.button4:
+                    intent.putExtra("VALUE1", Num1 / Num2);
+                    startActivity(intent);
+                    break;
+
+            }
+        }
+
+   }
 }
